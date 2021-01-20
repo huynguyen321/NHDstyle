@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: #f6cc5c;
+}
+
+div {
+    padding-left: 10px;
+}
