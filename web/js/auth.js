@@ -52,8 +52,9 @@ var signIn = function() {
             (data.role == "admin")
         ) {
             k = 1;
-            alert("Đăng nhập thành công");
             window.location.href = "../admin/index.html";
+            alert("Đăng nhập thành công");
+
         }
         if (
             (document.getElementById("email").value == data.email) &&
@@ -79,34 +80,66 @@ var signIn = function() {
 
 var signUp = function() {
     let username = document.getElementById("username").value;
-    let email = document.getElementById("email").value;
+    let email = document.getElementById("emails").value;
     let name = document.getElementById("name").value;
-    let password = document.getElementById("password").value;
+    let password = document.getElementById("passwords").value;
     let address = document.getElementById("address").value;
     let phone = document.getElementById("phone").value;
     let confirm = document.getElementById("confirm").value;
+    console.log(email + username + name + phone + address + password + confirm);
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (username && email && name && password && address && phone && confirm) {
-        if (password == confirm) {
-            var User = {
-                id: parseInt(user.length + 1),
-                username: username,
-                name: name,
-                email: email,
-                password: password,
-                address: address,
-                phone: phone,
-                role: "user",
-            }
-            alert("Đăng kí thành công.");
-            user.push(User);
-            localStorage.setItem("listUser", JSON.stringify(user));
-            window.location.href = "./signIn.html";
+        if (!(re.test(email))) {
+            alert("Email không hợp lệ.")
+            return false;
         } else {
-            alert("Vui lòng xác thực mật khẩu");
+            CheckPassword(password);
+            if (!isValidPhone(phone)) {
+                alert("Số điện thoại không hợp lệ");
+                return false;
+            } else {
+                if (password == confirm) {
+                    var User = {
+                        id: parseInt(user.length + 1),
+                        username: username,
+                        name: name,
+                        email: email,
+                        password: password,
+                        address: address,
+                        phone: phone,
+                        role: "user",
+                    }
+                    alert("Đăng kí thành công.");
+                    user.push(User);
+                    localStorage.setItem("listUser", JSON.stringify(user));
+                } else {
+                    alert("Vui lòng xác thực mật khẩu");
+                }
+            }
         }
     } else {
         alert("Vui lòng nhập đầy đủ thông tin");
     }
-
-
+}
+var isValidPhone = function(phoneNumber) {
+    var found = phoneNumber.search(/^(\+{1}\d{2,3}\s?[(]{1}\d{1,3}[)]{1}\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}$/);
+    if (found > -1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+var CheckPassword = function(inputtxt) {
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}$/;
+    if (passw.test(inputtxt)) {
+        return true;
+    } else {
+        alert('Vui lòng nhập từ 6-10 kí tự và có ít nhất số, chữ thường và chữ hoa.')
+        return false;
+    }
+}
+var isShow = false;
+var logout = function() {
+    localStorage.setItem("signin", null);
+    window.location.href = "../auth/index.html";
 }
