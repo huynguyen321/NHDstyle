@@ -38,7 +38,7 @@
                   border-radius: 20px;
                   padding: 10px;
                   outline: none;
-                  width: 80%;
+                  width: 85%;
               }
               
               .search button {
@@ -202,6 +202,19 @@
               #total {
                   font-size: 18px;
                   color: #f7544a;
+              }
+              /* carousel */
+              
+              .carousel img {
+                  height: 400px;
+              }
+              
+              #text-carousel-3 {
+                  font-family: Georgia;
+                  font-size: 70px;
+                  position: absolute;
+                  top: 70px;
+                  left: 50px;
               }
               /* body */
               
@@ -409,10 +422,6 @@
               
               .social-icon li a:hover {
                   background-position: center bottom;
-              }
-              
-              .social-icon li a.linkedin {
-                  background-image: url(../images/in.png);
               }
               
               .social-icon li a.google-plus {
