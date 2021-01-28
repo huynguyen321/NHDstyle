@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>NHDstyle</title>
@@ -13,23 +13,17 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dINHDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
     <link href="../style/style.css" rel="stylesheet" type="text/css">
-    <script src="https://smtpjs.com/v3/smtp.js">
-    </script>
+    <link rel="stylesheet" href="intro.css">
 
-    <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
-</script>
-<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
-</script>
-<![endif]-->
 </head>
 
 <body>
+
     <header>
         <div class="col-12 col-md-12" style="background-color: rgb(206, 206, 206);">
             <div class="container top">
@@ -151,132 +145,100 @@
 
         </nav>
     </header>
-    <div class="container_fullwidth">
+
+    <div class="divtong container-fluid">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h5 class="title contact-title">
-                        Liên hệ
-                    </h5>
-                    <div class="clearfix">
-                    </div>
-                    <div class="map">
-                        <iframe width="600" height="350" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Vietnam&amp;aq=&amp;sll=14.058324,108.277199&amp;sspn=21.827722,43.286133&amp;ie=UTF8&amp;hq=&amp;hnear=Vietnam&amp;ll=14.058324,108.277199&amp;spn=8.883583,21.643066&amp;t=m&amp;z=6&amp;output=embed">
-                        </iframe>
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="contact-infoormation">
-                                <h5>
-                                    Thông tin liên hệ
-                                </h5>
-                                <p>
+            <!-- Div hinh anh 1-->
+            <div class="divimg1">
+                <img src="https://www.for-believers.com/clients/forbelievers/themes/uploads/1434040442_110615.jpg">
+            </div>
 
-                                </p>
-                                <ul>
-                                    <li>
-                                        <span class="icon">
-                                            <img src="../images/message.png" alt="">
-                                        </span>
-                                        <p>
-                                            huy@gmail.com
-                                            <br> support@gmail.com
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <span class="icon">
-                                            <img src="../images/phone.png" alt="">
-                                        </span>
-                                        <p>
-                                            84. 35 562 7835
-                                            <br> 84. 45 228 9817
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <span class="icon">
-                                            <img src="../images/address.png" alt="">
-                                        </span>
-                                        <p>
-                                            101B, Lê Hữu Trác, Sơn Trà
-                                            <br> Đà Nẵng, Việt Nam
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="ContactForm">
-                                <h5>
-                                    Liên Lạc Với Chúng Tôi
-                                </h5>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label>
-                                                Họ và Tên
-                                                <strong class="red">
-                                                    *
-                                                </strong>
-                                            </label>
-                                            <input class="inputfild cname" type="text" id="cname">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>
-                                                Email
-                                                <strong class="red">
-                                                    *
-                                                </strong>
-                                            </label>
-                                            <input class="inputfild cemail" type="email" name="cemail" id="cemail">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label>
-                                                Tin nhắn của bạn
-                                                <strong class="red">
-                                                    *
-                                                </strong>
-                                            </label>
-                                            <textarea class="inputfild cmessage" rows="8" name="cmessage" id="cmessage"></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="button" class="btn btn-outline-primary" onclick="sendMail()">
-                                        Gửi
-                                    </button>
-                                </form>
-
-                                <script>
-                                    function sendMail() {
-                                        cusemail = document.getElementById("cemail").value;
-                                        cusname = document.getElementById("cname").value;
-                                        body = document.getElementById("cmessage").value;
-                                        console.log(cusemail, body, cusname);
-                                        Email.send({
-                                            SecureToken: "e02d1964-5b7d-4717-ad0f-1bc252b8907e",
-                                            To: cusemail,
-                                            From: "NHDstyle",
-                                            Subject: "Reply từ NHDstyle cho Thư liên hệ của " + cusname,
-                                            Body: "Bạn đã gửi cho chúng tôi nội dung" + body
-                                        }).then(
-                                            message => alert(message)
-                                        );
-                                    }
-                                </script>
-
-                            </div>
-                        </div>
-                    </div>
+            <!-- Div van ban -->
+            <div class="divtext">
+                <!-- Div văn bản 1 -->
+                <div class="divtext1">
+                    <br>
+                    <p class="H1">GIỚI THIỆU</p>
+                    <p class="H2">Thông tin chung về HND Style SHOP:</p>
+                    <p class="H4"><span class="H3"><b>HND Style SHOP</b></span> là nhà cung cấp các sản phẩm thị trường online hàng đầu Việt Nam. HND Style phát triển với định hướng mang tới cho người tiêu dùng các sản phẩm về áo quần chất lượng tốt, mẫu mã đẹp, giá
+                        cả hợp lý.Thông qua công nghệ 5.0.0, các sản phẩm đều được xử lý qua MXH. HDN Style là một trong những trang Web bán hàng chất lượng hàng đầu đang trong đà phát triển mạnh mẽ, chúng tôi chú trọng chất lượng sản phẩm đầu ra và đầu
+                        vào nhằm cúng cấp sản phẩm dịch vụ tốt nhất cho người tiêu dùng.
+                        <br>
+                        <span class="H5"><b>Tầm nhìn: </b></span>Trở thành nhà cung cấp sản phầm Dịch vụ áo quần chất lượng hàng đầu Việt Nam.<br>
+                        <span class="H5"><b>Sứ mệnh: </b></span>Nghiên cứu phát triển các giải pháp công nghệ, truyền thông trực tuyến vì mục tiêu phát triển và tạo dựng giá trị bền vững cho doanh nghiệp.<br>
+                        <span class="H5"><b>Giá trị cốt lõi: </b></span><br>
+                        <i>-Chuyên nghiệp: </i>Am hiểu công việc, ý thức kỷ luật, luôn có thái độ tích cực và cởi mở trong giao tiếp.<br>
+                        <i>-Tận tâm: </i> Một tinh thần trách nhiệm cao cùng với sự nỗ lực hết mình sẽ là sức mạnh to lớn vượt qua mọi khó khăn, thử thách để đạt được những mục tiêu đã đề ra. Tận tâm vì khách hàng, tận
+                        tâm trong công việc là triết lý hàng đầu trong suy nghĩ và hành động hướng tới vì mục tiêu phát triển chung.<br>
+                        <i>-Đổi mới: </i>Luôn luôn cập nhật kỹ thuật công nghệ, mang lại giá trị hiệu quả đến khách hàng.
+                        <br>
+                        <i>-Sáng tạo: </i>Học hỏi, nâng cao năng lực bản thân trong quá trình làm việc luôn luôn suy nghĩ, tìm tòi và học hỏi để tìm ra cái mới, cách giải quyết tốt nhất để đạt được hiệu quả tốt nhất.
+                        <br>
+                        <i>-Bền vững: </i>Phát triển toàn diện về mọi mặt, giá trị cốt lõi luôn song hành với sự phát triển của HND Style.
+                    </p>
                 </div>
             </div>
-            <div class="clearfix">
+
+            <br>
+            <br>
+            <!-- Div hình ảnh 2 -->
+            <div class="divimg2">
+                <div class="divimg2left">
+                    <img src="https://lh3.googleusercontent.com/-wCJkH5EgXNA/YA4zwKPEY2I/AAAAAAAAAT4/UgFvyAOdQYwmfdFRSQKCzLpvgemsk9WCgCK8BGAsYHg/s250/LOGO.png">
+                </div>
+                <div class="divimg2right">
+                    <img src="https://dpsayings.com/wp-content/uploads/2020/03/Featured-Image-for-never-give-up-quotes.jpg">
+                </div>
+            </div>
+            <!-- Div văn bản 2 -->
+            <div class="divtext">
+                <div class="divtext1">
+                    <p>
+                        <br>
+                        <span class="H2">Uy tín, chất lượng là yếu tố hàng đầu</span><br><br> Giữa hàng trăm <span class="H3">Công ty bán hàng
+                            online Chuyên nghiệp</span>, để giữ vừng được chỗ đúng trên thị trường công nghệ,
+                        <span class="H3">HND Style </span>luôn lấy uy tín, chất lượng làm yếu tố hàng đầu. Đến với <span class="H3">Webstite Áo
+                            quần</span> của HND Style shop, khách hàng sẽ nhận được những mẫu thiết kế bắt mắt, chất lượng và đa dạng.
+                        <br><br>
+                        <span class="H3">HND Style</span> không chỉ đi đầu trong lĩnh bán hàng lẻ online mà còn là một trong những nhà phân phối sỉ mang tầm quốc tế. Chúng tôi còn hỗ trợ những công cụ phụ trợ giúp website nhanh chóng được nhiều người
+                        biết đến như <span class="H3">dịch vụ email google, dịch vụ SEO, Content Marketing, Quảng cáo
+                            Google</span> hay những giải pháp Digital Marketing tổng thể giúp nâng cao thứ hạng website của bạn trên công cụ tìm kiếm Google.<br><br>
+                        <span class="H2">Nhân lực-Tài sản vô giá của chúng tôi</span><br><br> Không chỉ nhấn mạnh vào đầu tư cơ sở vật chất, chúng tôi hiểu rằng đầu tư vào con người là khoản đầu tư lâu dài và bền vững nhất. Vì vậy Sky Việt Nam luôn chú
+                        trọng bồi dưỡng nguồn nhân lực đủ sức, đủ tài để tiếp thu những tiến bộ khoa học hiện đại. Với đội ngũ thiết kế trẻ, năng động, ham học hỏi, luôn cập nhật những mẫu thiết kế mới, chúng tôi không chỉ sẵn sàng tư vấn cho quý khách
+                        hàng khi có nhu cầu mà còn luôn song hành cùng bạn trong quá trình vận hành, quản trị <span class="H3">HND Style shop</span>.<br>
+                        <br>
+                        <span class="H2">Lý do nên chọn HND Style shop là đối tượng hàng đầu</span><br><br> - Chất lượng luôn đảm bảo<br> - Giá thành hợp Lý<br> - Website theo chuẩn CEO, dễ sử dụng<br> - Hỗ trợ các giải pháp kinh doanh trực tuyến giúp
+                        phát huy tối đa vai trò của website trong kinh doanh.<br> - Đội ngũ tư vấn khi khách hàng có thắc mắc về dịch vụ
+                    </p>
+                </div>
+            </div>
+
+
+            <br><br>
+            <!-- Div hình ảnh 3 -->
+            <div class="divimg3">
+                <img src="https://skyvietnam.com.vn/uploads/images/sky.jpg">
+            </div>
+
+            <!-- Div văn bản 3 -->
+            <div class="divtext">
+                <div class="divtext1">
+                    <br><br>
+                    <p>
+                        Là một công ty phân phối sản phẩm thị trường trong nước và quốc tế, với đội ngũ kỹ sư năng động nhiệt tình, dám nghĩ, dám làm,
+                        <span class="H3">HND Style</span> cam kết đem đến những gì tốt đẹp nhất cho người tiêu dùng. Đã từng làm việc với nhiều đối tượng khách hàng, thuộc mọi lĩnh vực ngành nghề khác nhau, chúng tôi hiểu rằng sự hài lòng của quý khách
+                        hàng là thước đo thành công cho doanh nghiệp chúng tôi. Vì vậy, chúng tôi luôn trân trọng và lắng nghe ý tưởng, mong mỏi của khách hàng cho sản phẩm chúng tôi luôn đạt hiệu quả tốt nhất.
+                        <br><br> Quý khách có nhu cầu hợp tác, yêu cầu dịch vụ, xin vui lòng liên hệ:
+                        <span class="H2">0986.538.347</span>
+                        <br><br><br>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="clearfix">
-    </div>
+
+
+
     <div class="footer">
         <div class="footer-info">
             <div class="container">
@@ -380,7 +342,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

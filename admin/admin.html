@@ -19,6 +19,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../js/admin.js"></script>
 
 </head>
 
@@ -156,18 +158,22 @@
         </nav>
 
         <div class="tab-content" id="nav-tabContent">
+            <!-- qlsp -->
             <div class="tab-pane fade show active" id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
                 <div id="layoutSidenav_content">
                     <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fas fa-plus mr-2"></i> Create</button>
+                        <i class="fas fa-plus mr-2"></i>Thêm mới</button>
 
                     <table class="table">
                         <thead class="thead-light text-center">
                             <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>IMG</th>
-                                <th>Price</th>
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Ảnh 1</th>
+                                <th>Ảnh 2</th>
+                                <th>Ảnh 3</th>
+                                <th>Giá</th>
+                                <th>Tag</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -190,16 +196,33 @@
                             <div class="modal-body">
                                 <form action="" class="form-row">
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="name" placeholder="name">
-
+                                        <input type="text" class="form-control" id="name" placeholder="Tên">
                                     </div>
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="img" placeholder="img">
-
+                                        <input type="text" class="form-control" id="img1" placeholder="Ảnh 1">
                                     </div>
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="price" placeholder="giá">
+                                        <input type="text" class="form-control" id="img2" placeholder="Ảnh 2">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <input type="text" class="form-control" id="img3" placeholder="Ảnh 3">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <input type="text" class="form-control" id="price" placeholder="Giá">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        Tags<br />
+                                        <input type="radio" id="tag1" name="people" value="Male">
+                                        <label for="vehicle1">Đồ nam</label>
 
+                                        <input type="radio" id="tag2" name="people" value="Female">
+                                        <label for="tag2">Đồ nữ</label>
+
+                                        <input type="radio" id="tag3" name="people" value="Couple">
+                                        <label for="tag3">Đồ đôi</label>
+
+                                        <input type="checkbox" id="tag4" name="season" value="Fall & Winter">
+                                        <label for="tag4">Thu-Đông</label>
                                     </div>
 
                                 </form>
@@ -207,7 +230,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"> Exit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
                             </div>
                         </div>
                     </div>
@@ -228,19 +251,33 @@
                                 <form actio n="" class="form-row">
 
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="idd" placeholder="name">
+                                        <input type="text" class="form-control" id="name" placeholder="Tên">
                                     </div>
-
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="named" placeholder="name">
+                                        <input type="text" class="form-control" id="img1" placeholder="Ảnh 1">
                                     </div>
-
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="imgd" placeholder="img">
+                                        <input type="text" class="form-control" id="img2" placeholder="Ảnh 2">
                                     </div>
-
                                     <div class="col-12 mt-3">
-                                        <input type="text" class="form-control" id="priced" placeholder="giá">
+                                        <input type="text" class="form-control" id="img3" placeholder="Ảnh 3">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        <input type="text" class="form-control" id="price" placeholder="Giá">
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                        Tags<br />
+                                        <input type="radio" id="tag1" name="people" value="Male">
+                                        <label for="vehicle1">Đồ nam</label>
+
+                                        <input type="radio" id="tag2" name="people" value="Female">
+                                        <label for="tag2">Đồ nữ</label>
+
+                                        <input type="radio" id="tag3" name="people" value="Couple">
+                                        <label for="tag3">Đồ đôi</label>
+
+                                        <input type="checkbox" id="tag4" name="season" value="Fall & Winter">
+                                        <label for="tag4">Thu-Đông</label>
                                     </div>
 
                                     <div class="col-3 mt-3" id="summitUpdate">
@@ -248,10 +285,9 @@
                                     </div>
                                 </form>
 
-
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
                             </div>
                         </div>
                     </div>
@@ -260,10 +296,14 @@
 
             </div>
 
+            <!-- ql don hang -->
             <div class="tab-pane fade" id="nav-order" role="tabpanel" aria-labelledby="nav-order-tab">
-                ...
-            </div>
 
+
+
+
+            </div>
+            <!-- qlkh -->
             <div class="tab-pane fade" id="nav-customer" role="tabpanel" aria-labelledby="nav-customer-tab">
                 ...
             </div>
@@ -273,6 +313,6 @@
 
 
 </body>
-<script src="admin.js"></script>
+
 
 </html>
