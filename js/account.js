@@ -1,3 +1,15 @@
+const API_URL = "http://localhost:3000";
+//callAPI
+function callAPI(endpoint, method, body) {
+    return axios({
+        method: method,
+        url: `${API_URL}/${endpoint}`,
+        data: body,
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
 // hien thi phan dang nhap
 function callFormSignIn() {
     var html = `
@@ -33,7 +45,6 @@ function callFormSignIn() {
         </div>
     </div>  
 `;
-
     document.getElementById("form-sign-in").innerHTML = html;
 }
 
@@ -60,38 +71,33 @@ function callFormSignUp() {
         </p>
     </div>
         
-            <div class="login-form">
-                <div class="form-group">
-                    <label class="sr-only">Email</label>
-                    <input type="text" placeholder="email@gmail.com" class="form-email form-control" id="emails">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-username">Tên tài khoản</label>
-                    <input type="text" name="form-username" placeholder="ngacute123" class="form-username form-control" id="username">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-name">Họ và tên</label>
-                    <input type="text" name="form-name" placeholder="Nguyễn Thị Thanh Nga" class="form-name form-control" id="name">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-phone">Số điện thoại</label>
-                    <input type="text" name="form-phone" placeholder="0912345678" class="form-phone form-control" id="phone">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-address">Địa chỉ liên hệ</label>
-                    <input type="text" name="form-address" placeholder="101B Lê Hữu Trác" class="form-address form-control" id="address">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-password">Mật khẩu</label>
-                    <input type="password" name="form-password" placeholder="******" class="form-password form-control" id="passwords">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="form-confirm">Mật khẩu</label>
-                    <input type="password" name="form-confirm" placeholder="******" class="form-confirm form-control" id="confirm">
-                </div>
-                <button type="submit" class="btn btn-primary" onclick="signUp()">Đăng kí</button>
-            </div>
+    <div class="login-form">
+        <div class="form-group">
+            <label>Email</label></br>
+            <input type="text" placeholder="email@gmail.com" class="form-email form-control" id="emails">
         </div>
+        <div class="form-group">
+            <label for="form-name">Họ và tên</label></br>
+            <input type="text" name="form-name" placeholder="Nguyễn Thị Thanh Nga" class="form-name form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="form-phone">Số điện thoại</label></br>
+            <input type="text" name="form-phone" placeholder="0912345678" class="form-phone form-control" id="phone">
+        </div>
+        <div class="form-group">
+            <label for="form-address">Địa chỉ liên hệ</label></br>
+            <input type="text" name="form-address" placeholder="101B Lê Hữu Trác" class="form-address form-control" id="address">
+        </div>
+        <div class="form-group">
+            <label for="form-password">Mật khẩu</label></br>
+            <input type="password" name="form-password" placeholder="******" class="form-password form-control" id="passwords">
+        </div>
+        <div class="form-group">
+            <label for="form-confirm">Xác nhận mật khẩu</label></br>
+            <input type="password" name="form-confirm" placeholder="******" class="form-confirm form-control" id="confirm">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="signUp()">Đăng kí</button>
+    </div>
 
 
                 <div class="modal-footer" style="color: black" >Nếu bạn đã có tài khoản, hãy <a href="#" data-dismiss="modal" aria-hidden="true" onclick="callFormSignIn()" data-toggle="modal" data-target="#loginModal">&nbsp Đăng nhập</a></div>
@@ -103,40 +109,14 @@ function callFormSignUp() {
 }
 
 // set data
-var user = [{
-        id: 1,
-        username: "admin",
-        name: "Admin",
-        phone: "123456778",
-        email: "admin@gmail.com",
-        password: "1",
-        address: "BD",
-        role: "admin",
-    },
-    {
-        id: 2,
-        username: "user",
-        name: "User",
-        phone: "123456778",
-        email: "user@gmail.com",
-        password: "1",
-        address: "BD",
-        role: "user",
-    },
-];
-var saveUser = function() {
-    localStorage.setItem("listUser", JSON.stringify(user));
-};
-var loadUser = function() {
-    user = JSON.parse(localStorage.getItem("listUser"));
-};
-if (localStorage.getItem("listUser") != null) {
-    loadUser();
-}
-saveUser();
-
+var user = null;
+callAPI("customer", "GET", null).then((res) => {
+    user = res.data;
+});
+console.log(user);
 // sign in
 var signIn = function() {
+    console.log(user);
     var k = -1;
     for (var i in user) {
         var data = JSON.parse(JSON.stringify(user[i]));
@@ -145,73 +125,58 @@ var signIn = function() {
             document.getElementById("password").value == data.password &&
             data.role == "admin"
         ) {
-            k = 1;
-            console.log(data);
-
-            $('#signInModal').modal('hide');
-            //hide the modal
-            alert("Đăng nhập thành công");
-            // Script for account
-            localStorage.setItem("signin", JSON.stringify(data));
-
-            document.getElementById("control-accout").innerHTML = `
-                <button>
-                    <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
-                </button>
-                <button onclick="logout()">
-                    <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
-                </button>`;
-        }
-        if (
+            k = 2;
+            console.log(k);
+        } else if (
             document.getElementById("email").value == data.email &&
             document.getElementById("password").value == data.password &&
             data.role == "user"
         ) {
             k = 1;
-            localStorage.setItem("signin", JSON.stringify(data));
-            alert("Đăng nhập thành công");
-            // Script for account
-            document.getElementById("control-accout").innerHTML = `
-<button>
-    <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
-    </button>
-    <button onclick="logout()">
-    <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
-    </button>
-</button>`;
         }
     }
-    if (k == -1) {
+    console.log(k);
+    if (k >= 1) {
+        $("#signInModal").modal("hide");
+        //hide the modal
+        alert("Đăng nhập thành công");
+        // Script for account
+        if (k == 2) {
+            document.getElementById("control-accout").innerHTML = `
+            <button>
+                <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
+            </button>
+            <button onclick="logout()">
+                <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
+            </button>
+            <button onclick="window.location.href='../html/admin.html'">
+                <i class=" fas fa-cogs fa-fw" aria-hidden="true"></i>Trang Admin
+            </button>`;
+        } else {
+            document.getElementById("control-accout").innerHTML = `
+            <button>
+                <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
+            </button>
+            <button onclick="logout()">
+                <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
+            </button>`;
+        }
+    } else {
         alert("Đăng nhập không thành công.");
     }
 };
-var checkEmail = function(email) {
-    let k = -1;
-    for (let i in user) {
-        var data = JSON.parse(JSON.stringify(user[i]));
-        if (email === data.email) {
-            k = 1;
-        } else {
-            k = -1;
-        }
-    }
-    if (k == 1) {
-        return true;
-    } else {
-        return false;
-    }
-};
+
 //sign up
 var signUp = function() {
     let email = document.getElementById("emails").value;
     let name = document.getElementById("name").value;
-    let password = document.getElementById("passwords").value;
-    let address = document.getElementById("address").value;
     let phone = document.getElementById("phone").value;
+    let address = document.getElementById("address").value;
+    let password = document.getElementById("passwords").value;
     let confirm = document.getElementById("confirm").value;
     //console.log(email + username + name + phone + address + password + confirm);
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (email && name && password && address && phone && confirm) {
+    if (email && name && phone && address && password && confirm) {
         if (!re.test(email) || checkEmail(email)) {
             alert("Email không hợp lệ hoặc đã tồn tại.");
             return false;
@@ -220,20 +185,38 @@ var signUp = function() {
                 alert("Số điện thoại không hợp lệ");
                 return false;
             } else {
+                console.log(password);
                 if (CheckPassword(password)) {
                     if (password == confirm) {
-                        var User = {
+                        let User = {
                             id: parseInt(user.length + 1),
-                            name: name,
                             email: email,
-                            password: password,
-                            address: address,
+                            name: name,
                             phone: phone,
+                            address: address,
+                            password: password,
                             role: "user",
                         };
+                        callAPI("customer", "POST", User).then((Response) => {});
                         alert("Đăng kí thành công.");
-                        user.push(User);
-                        localStorage.setItem("listUser", JSON.stringify(user));
+                        Email.send({
+                            SecureToken: "28997d74-13c1-4110-b782-e00a72010608",
+                            From: "NHDstyle@gmail.com",
+                            To: email,
+                            Subject: "HND-style_ Đăng kí tài khoản",
+                            Body: "Thân gửi quí khách hàng, NHD xin chúc mừng bạn đã đăng kí thành công tài khoản.",
+                        }).then(function(message) {
+                            alert("Gửi email thành công. Vui lòng kiểm tra email của bạn");
+                            console.log(email);
+                            console.log(message);
+                        });
+
+                        document.getElementById("emails").value = "";
+                        document.getElementById("name").value = "";
+                        document.getElementById("phone").value = "";
+                        document.getElementById("address").value = "";
+                        document.getElementById("passwords").value = "";
+                        document.getElementById("confirm").value = "";
                     } else {
                         alert("Vui lòng xác thực mật khẩu");
                     }
@@ -242,6 +225,23 @@ var signUp = function() {
         }
     } else {
         alert("Vui lòng nhập đầy đủ thông tin");
+    }
+};
+
+//check Email
+var checkEmail = function(email) {
+    let k = -1;
+    console.log(user);
+    for (let i in user) {
+        if (email === user[i].email) {
+            k = 1;
+            return true;
+        } else {
+            k = -1;
+        }
+    }
+    if (k == -1) {
+        return false;
     }
 };
 // check phone
@@ -270,6 +270,5 @@ var CheckPassword = function(inputtxt) {
 
 // dang xuat
 var logout = function() {
-    localStorage.setItem("signin", null);
-    window.location.href = "../home/index.html";
+    window.location.href = "../html/index.html";
 };
