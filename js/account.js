@@ -117,9 +117,11 @@ console.log(user);
 // sign in
 var signIn = function() {
     console.log(user);
+    var username;
     var k = -1;
     for (var i in user) {
         var data = JSON.parse(JSON.stringify(user[i]));
+        username = data.name;
         if (
             document.getElementById("email").value == data.email &&
             document.getElementById("password").value == data.password &&
@@ -147,7 +149,7 @@ var signIn = function() {
                 <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
             </button>
             <button onclick="logout()">
-                <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
+            <i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất
             </button>
             <button onclick="window.location.href='../html/admin.html'">
                 <i class=" fas fa-cogs fa-fw" aria-hidden="true"></i>Trang Admin
@@ -157,9 +159,12 @@ var signIn = function() {
             <button>
                 <i class="fas fa-clipboard-list fa-fw "></i>Theo dõi đơn hàng
             </button>
+            <button>
+            <i class="fa fa-user" aria-hidden="true"></i>${username}
+            </button>
             <button onclick="logout()">
-                <i class=" fa fa-user fa-fw" aria-hidden="true"></i>Đăng xuất
-            </button>`;
+            <i class="fas fa-sign-out-alt" aria-hidden="true"></i></i>Đăng xuất
+            </but   ton>`;
         }
     } else {
         alert("Đăng nhập không thành công.");
@@ -309,7 +314,7 @@ function showHotProduct() {
                         <i class="fas fa-cart-plus"></i>
                     </a>
                 </span>
-                    <button class="btn btn-outline-primary float-right col-5" data-toggle="modal" data-target="#exampleModalLong">
+                    <button class="btn btn-outline-primary float-right col-5" data-toggle="modal" data-target="#exampleModalLong" onclick="getProductById(${data.id})">
                     <i class="fas fa-info fa-fw"></i>Chi tiết
                 </button>
                     <!-- modal: detail product -->
@@ -338,18 +343,22 @@ function showHotProduct() {
 
 
 function getProductById(id) {
+    id = parseInt(id);
     console.log(id);
     let html = "";
-    let allProduct = JSON.parse(localStorage.getItem('listProduct'));
-    let a = allProduct[id];
-    html = `
-    <img src = "${a.img}">
+
+    callAPI(`product/${id}`, "GET", null).then((res) => {
+        listProduct = res.data;
+        var a = JSON.parse(JSON.stringify(listProduct));
+        html = `
+    <img src = "${a.img1}">
     <br>
     <br> ${a.name}
     <br> 
-    <b>Giá:${a.price }đ </b>
+    <b>Giá:${a.price} VNĐ </b>
     <br>
     <a class = "btn btn-outline-info btn-detail" onclick = "checkorder(` + a.id + `)" >Mua</a>
         `;
-    document.getElementById("prinf_product").innerHTML = html;
+        document.getElementById("prinf_product").innerHTML = html;
+    });
 }
